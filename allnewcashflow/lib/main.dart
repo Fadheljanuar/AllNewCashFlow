@@ -1,3 +1,4 @@
+import 'package:allnewcashflow/shared/shared.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +12,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Cash Flow",
-      theme: ThemeData(),
+      theme: MyTheme.lightTheme(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Login(),
+      },
     );
   }
 }
