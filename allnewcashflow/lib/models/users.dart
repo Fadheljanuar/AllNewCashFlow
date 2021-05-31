@@ -20,5 +20,13 @@ class Users extends Equatable {
   );
 
   @override
-  List<Object> get props => throw UnimplementedError();
+  List<Object> get props => [
+        uid,
+        name,
+        phone,
+        email,
+        password,
+        createdAt,
+        updatedAt,
+      ];
 }
