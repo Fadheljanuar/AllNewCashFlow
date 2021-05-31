@@ -89,8 +89,8 @@ class _LoginState extends State<Login> {
                               Navigator.pushNamed(context, MainMenu.routeName);
                             } else {
                               //kosong
-                              // Fluttertoast.showToast(
-                              //     msg: "Please fill the fields!");
+                              Fluttertoast.showToast(
+                                  msg: "Please fill the fields!");
                             }
                           },
                           icon: Icon(Icons.login_outlined),
@@ -102,9 +102,9 @@ class _LoginState extends State<Login> {
                       SizedBox(height: 20),
                       GestureDetector(
                         onTap: () {
-                          // Fluttertoast.showToast(msg: "Link Clicked");
-                          // Navigator.pushReplacementNamed(
-                          //     context, Register.routeName);
+                          Fluttertoast.showToast(msg: "Link Clicked");
+                          Navigator.pushReplacementNamed(
+                              context, Register.routeName);
                         },
                         child: Text(
                           "Not Registered?",
