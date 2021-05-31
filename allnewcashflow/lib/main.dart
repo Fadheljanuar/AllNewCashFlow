@@ -1,4 +1,5 @@
 import 'package:allnewcashflow/shared/shared.dart';
+import 'package:allnewcashflow/ui/pages/pages.dart';
 import 'package:flutter/material.dart';
 
 void main() {

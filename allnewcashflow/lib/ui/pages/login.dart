@@ -1,1 +1,125 @@
 part of 'pages.dart';
+
+class Login extends StatefulWidget {
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final _formKey = GlobalKey<FormState>();
+  final ctrlEmail = TextEditingController();
+  final ctrlPass = TextEditingController();
+  bool isVisible = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Login'),
+        centerTitle: true,
+        elevation: 0,
+      ),
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        padding: EdgeInsets.all(40),
+        child: Stack(
+          children: [
+            ListView(
+              children: [
+                Image.asset("assets/images/3346770-200.png"),
+                SizedBox(height: 30),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                          controller: ctrlEmail,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            labelText: "Email :",
+                            prefixIcon: Icon(Icons.mail_outline_rounded),
+                            border: OutlineInputBorder(),
+                          ),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return "Still Empty!";
+                            } else {
+                              if (EmailValidator.validate(value)) {
+                                return "Email Isn't Valid!";
+                              } else {
+                                return null;
+                              }
+                            }
+                          }),
+                      SizedBox(height: 24),
+                      TextFormField(
+                        controller: ctrlPass,
+                        obscureText: isVisible,
+                        decoration: InputDecoration(
+                          labelText: "Password",
+                          prefixIcon: Icon(Icons.vpn_key_outlined),
+                          border: OutlineInputBorder(),
+                          suffixIcon: new GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                isVisible = !isVisible;
+                              });
+                            },
+                            child: Icon(isVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                          ),
+                        ),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          return value.length < 6
+                              ? "Password must have at least 6 Character!"
+                              : null;
+                        },
+                      ),
+                      SizedBox(height: 20),
+                      ElevatedButton.icon(
+                          onPressed: () {
+                            if (_formKey.currentState.validate()) {
+                              //lanjut tahap selanjutnya
+                              Navigator.pushNamed(context, MainMenu.routeName);
+                            } else {
+                              //kosong
+                              Fluttertoast.showToast(
+                                  msg: "Please fill the fields!");
+                            }
+                          },
+                          icon: Icon(Icons.login_outlined),
+                          label: Text("Login"),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.amber,
+                            elevation: 10,
+                          )),
+                      SizedBox(height: 20),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacementNamed(
+                              context, Register.routeName);
+                        },
+                        child: Text(
+                          "Not Registered?",
+                          style: TextStyle(
+                            color: Colors.green,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
