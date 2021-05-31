@@ -48,7 +48,7 @@ class _LoginState extends State<Login> {
                             if (value.isEmpty) {
                               return "Still Empty!";
                             } else {
-                              if (!EmailValidator.validate(value)) {
+                              if (EmailValidator.validate(value)) {
                                 return "Email Isn't Valid!";
                               } else {
                                 return null;
