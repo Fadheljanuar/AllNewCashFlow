@@ -1,6 +1,7 @@
 part of 'pages.dart';
 
 class Login extends StatefulWidget {
+  static const String routeName = "/login";
   @override
   _LoginState createState() => _LoginState();
 }
@@ -101,8 +102,9 @@ class _LoginState extends State<Login> {
                       SizedBox(height: 20),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushReplacementNamed(
-                              context, Register.routeName);
+                          Fluttertoast.showToast(msg: "Link Clicked");
+                          // Navigator.pushReplacementNamed(
+                          //     context, Register.routeName);
                         },
                         child: Text(
                           "Not Registered?",
