@@ -18,6 +18,23 @@ class AuthServices {
     uid = userCredential.user.uid;
     token = await userCredential.user.getIdToken();
 
+    await userCollection.doc(uid).set({
+      'uid': uid,
+      'name': users.name,
+      'phone': users.phone,
+      'email': users.email,
+      'password': users.password,
+      'token': token,
+      'createdAt': dateNow,
+      'updatedAt': dateNow,
+    }).then((value) {
+      msg = "success";
+    }).catchError((onError) {
+      msg = onError;
+    });
+
+    auth.signOut();
+
     return msg;
   }
 }

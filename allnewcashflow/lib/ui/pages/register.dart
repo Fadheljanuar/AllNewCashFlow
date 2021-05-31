@@ -129,8 +129,8 @@ class _RegisterState extends State<Register> {
                               //Navigator.pushNamed(context, MainMenu.routeName);
                             } else {
                               //kosong
-                              Fluttertoast.showToast(
-                                  msg: "Please fill the fields!");
+                              // Fluttertoast.showToast(
+                              //     msg: "Please fill the fields!");
                             }
                           },
                           icon: Icon(Icons.save),
