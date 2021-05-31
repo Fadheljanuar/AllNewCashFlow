@@ -103,8 +103,8 @@ class _LoginState extends State<Login> {
                       GestureDetector(
                         onTap: () {
                           Fluttertoast.showToast(msg: "Link Clicked");
-                          // Navigator.pushReplacementNamed(
-                          //     context, Register.routeName);
+                          Navigator.pushReplacementNamed(
+                              context, Register.routeName);
                         },
                         child: Text(
                           "Not Registered?",
