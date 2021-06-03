@@ -12,6 +12,7 @@ class AuthServices {
     await Firebase.initializeApp();
     String msg = "";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     String token = "";
     String uid = "";
@@ -21,6 +22,8 @@ class AuthServices {
     uid = userCredential.user.uid;
     token = await userCredential.user.getIdToken();
 >>>>>>> parent of 8947738 (9)
+=======
+>>>>>>> parent of 06151ca (8)
 
     return msg;
   }
