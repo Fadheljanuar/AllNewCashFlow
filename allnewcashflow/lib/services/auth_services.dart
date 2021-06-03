@@ -11,6 +11,16 @@ class AuthServices {
   static Future<String> signUp() async {
     await Firebase.initializeApp();
     String msg = "";
+<<<<<<< HEAD
+=======
+    String token = "";
+    String uid = "";
+
+    UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+        email: users.email, password: users.password);
+    uid = userCredential.user.uid;
+    token = await userCredential.user.getIdToken();
+>>>>>>> parent of 8947738 (9)
 
     return msg;
   }
