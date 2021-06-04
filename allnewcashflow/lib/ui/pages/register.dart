@@ -123,16 +123,27 @@ class _RegisterState extends State<Register> {
                       ),
                       SizedBox(height: 20),
                       ElevatedButton.icon(
-                          onPressed: () {
-                            if (_formKey.currentState.validate()) {
-                              //lanjut tahap selanjutnya
-                              //Navigator.pushNamed(context, MainMenu.routeName);
-                            } else {
-                              //kosong
-                              Fluttertoast.showToast(
-                                  msg: "Please fill the fields!");
-                            }
-                          },
+                          onPressed: () async {
+                        if (_formKey.currentState.validate()) {
+                          Users users = new Users(
+                              "",
+                              ctrlName.text,
+                              ctrlPhone.text,
+                              ctrlEmail.text,
+                              ctrlPass.text,
+                              "",
+                              "");
+                          String msg = await AuthServices.signUp(users);
+                          if (msg == "success") {
+                            AcitivityServices.showToast(
+                                "Register Success", Colors.grey);
+                          }                     
+                        } else {
+                          Fluttertoast.showToast(
+                              msg:
+                                  "Please Check Email and Passowrd Correctly!");
+                        }
+                      },
                           icon: Icon(Icons.save),
                           label: Text("Register"),
                           style: ElevatedButton.styleFrom(
