@@ -11,6 +11,7 @@ class _LoginState extends State<Login> {
   final ctrlEmail = TextEditingController();
   final ctrlPass = TextEditingController();
   bool isVisible = true;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -83,16 +84,36 @@ class _LoginState extends State<Login> {
                       ),
                       SizedBox(height: 20),
                       ElevatedButton.icon(
-                          onPressed: () {
-                            if (_formKey.currentState.validate()) {
-                              //lanjut tahap selanjutnya
-                              Navigator.pushNamed(context, MainMenu.routeName);
-                            } else {
-                              //kosong
-                              Fluttertoast.showToast(
-                                  msg: "Please fill the fields!");
-                            }
-                          },
+                          onPressed: () async {
+                          if (_formKey.currentState.validate()) {
+                            setState(() {
+                              isLoading = true;
+                            });
+                            await AuthServices.signIn(ctrlEmail.text , ctrlPass.text).then((value) {
+                              if (value == "success") {
+                                setState(() {
+                                  isLoading = false;
+                                });
+                                AcitivityServices.showToast("Login success", Colors.blueGrey);
+                                Navigator.pushReplacementNamed(context, MainMenu.routeName);
+                              } else {
+                                setState(() {
+                                  isLoading = false;
+                                });
+                                AcitivityServices.showToast(
+                                    value, Colors.redAccent);
+                              }
+                            });
+                            Navigator.pushReplacementNamed(
+                            context, MainMenu.routeName);
+
+                          } else {
+                            Fluttertoast.showToast(
+                            msg: "Please check the field",
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white);
+                          }
+                        },
                           icon: Icon(Icons.login_outlined),
                           label: Text("Login"),
                           style: ElevatedButton.styleFrom(
