@@ -20,4 +20,18 @@ static void showToast(String msg, Color mycolor){
 
     );
 }
+
+static Container loadings(){
+    return Container(
+      alignment: Alignment.center,
+      width: double.infinity,
+      height: double.infinity,
+      color: Colors.white,
+      child: SpinKitFadingCircle(
+        size: 50,
+        color: Colors.grey,
+      ),
+    );
+  }
+
 }
